@@ -6,8 +6,6 @@ using namespace std;
 class Matrix {
 
     private: 
-        const int x = 10;
-        const int y = 10;
         int value[10][10];
         int target_row_idx = 0;
         int max;
@@ -15,10 +13,10 @@ class Matrix {
 
     public:
         int linear_search() {
-            for (int i = 0; i < y; i++){
-                for (int j = 0; j < x; j++){
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
                     if (value[0][0] == value[j][i]){
-                        target_row_idx = y;
+                        target_row_idx = i;
                     }
                     else {
                         target_row_idx = 0;
@@ -29,13 +27,10 @@ class Matrix {
         }
 
         int max_search() {
-            for (int i = 0; i < y; i++){
-                for (int j = 0; j < x; j++){
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
                     if (value[j][i] > max){
                         max = value[j][i];
-                    }
-                    else {
-                        target_row_idx = 0;
                     }
                 }
             }
@@ -43,8 +38,8 @@ class Matrix {
         } 
 
         int min_search() {
-            for (int i = 0; i < y; i++){
-                for (int j = 0; j < x; j++){
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
                     if (value[j][i] < min){
                         min = value[j][i];
                     }
@@ -55,18 +50,18 @@ class Matrix {
         }
 
         void matrix_addition(Matrix &m2, int matrix_sum[10][10]){
-            for (int i = 0; i < y; i++){
-                for (int j = 0; j < x; j++){
+            for (int i = 0; i < 10; i++){
+                for (int j = 0; j < 10; j++){
                     matrix_sum[j][i] = value[j][i] + m2.get_value(j,i);
                 }
             }
         }
 
         void matrix_mul(Matrix &m2, int matrix_prod[10][10]){
-                for (int i = 0; i < y; i++){
-                    for (int j = 0; j < x; j++){
+                for (int i = 0; i < 10; i++){
+                    for (int j = 0; j < 10; j++){
                         int sum = 0;
-                        for (int k = 0; k < x; k++){
+                        for (int k = 0; k < 10; k++){
                             sum = sum + value[j][k] * m2.get_value(k,i); 
                         }
                     matrix_prod[j][i] = sum;
@@ -74,7 +69,7 @@ class Matrix {
             }
         }
 
-        void set_value(string file){
+        void set_value(char* file){
             ifstream num(file);
             for (int i = 0; i < y; i++){
                 for (int j = 0; j < x; j++){
@@ -111,8 +106,6 @@ int main() {
     if (m1_firstnum == 0) cout << "Target Value in Matrix is not shown " << endl;
     cout << "Maximum Value is: " << m1_max << endl;
     cout << "Minimum Value is: " << m1_min << endl; 
+
+    return 0;
 }
-
-
-
-
